@@ -1,0 +1,108 @@
+
+body {
+  background: linear-gradient(135deg, #0B0C2A, #0B0C2A,#FFFF);
+  color: white;
+  font-family:'Pacifico', cursive;
+  text-align: center;
+  padding: 50px;
+}
+
+#contenido {
+  max-width: 700px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+}
+
+.texto {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.firma {
+  margin-top: 40px;
+  font-size: 1.1rem;
+}
+
+#musicBtn {
+  margin-top: 30px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+}
+
+#musicBtn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.foto {
+  width: 100%;         /* ocupa todo el ancho del contenedor */
+  max-width: 700px;    /* no se hace más grande que el contenido */
+  border-radius: 15px; /* bordes redondeados */
+  margin-bottom: 20px; /* espacio debajo de la imagen */
+}
+
+
+.heartBg {
+  position: absolute;
+  font-size: 10px;
+  color: #FF6B81;
+  opacity: 0.5;
+  animation: blink 3s infinite alternate;
+  z-index: 2;
+}
+
+@keyframes blink {
+  0% { opacity: 0.2; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.2; }
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  opacity: 0.8;
+  border-radius: 50%;
+  animation: floatParticle linear infinite;
+  z-index: 2;
+}
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) translateX(0); opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-600px) translateX(50px); opacity: 0; }
+}
+
+.fog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  animation: moveFog 60s linear infinite;
+  z-index: 1;
+}
+
+@keyframes moveFog {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(-20%, -10%); }
+  100% { transform: translate(0,0); }
+}
+
+
+
+
+
+
+
