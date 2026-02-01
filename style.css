@@ -2,7 +2,7 @@
 body {
   background: linear-gradient(135deg, #0B0C2A, #0B0C2A,#FFFF);
   color: white;
-  font-family:'Pacifico', Great Vibes;
+  font-family:'Pacifico',cursive;
   text-align: center;
   padding: 50px;
 }
@@ -24,9 +24,11 @@ h1 {
 }
 
 .firma {
-  margin-top: 40px;
-  font-size: 1.1rem;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
 }
+
 
 #musicBtn {
   margin-top: 30px;
