@@ -1,26 +1,3 @@
-.heart {
-  position: absolute;
-  top: 0; /* empiezan desde arriba */
-  color: #FF6B81; /* color del corazón */
-  user-select: none;
-  pointer-events: none;
-  font-size: 20px; /* tamaño base, se sobreescribe en JS */
-  animation-name: fall;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(-50px); /* justo arriba de la pantalla */
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(110vh); /* caen hasta abajo */
-    opacity: 0;
-  }
-}
-
 
 body {
   background: linear-gradient(135deg, #0B0C2A, #0B0C2A,#FFFF);
@@ -73,20 +50,6 @@ h1 {
   margin-bottom: 20px; /* espacio debajo de la imagen */
 }
 
-.fallingHeart {
-  position: fixed;
-  top: -50px; /* empiezan fuera de la pantalla */
-  font-size: 20px;
-  color: #FF6B81;
-  z-index: 2;
-  animation-name: fall;
-  animation-timing-function: linear;
-}
-
-@keyframes fall {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-}
 
 .heartBg {
   position: absolute;
@@ -136,6 +99,8 @@ h1 {
   50% { transform: translate(-20%, -10%); }
   100% { transform: translate(0,0); }
 }
+
+
 
 
 
