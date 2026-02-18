@@ -1,17 +1,10 @@
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML = "❤"; // símbolo de corazón
-}
-
-// Crear corazones continuamente
-setInterval(createHeart, 1); // un corazón cada 0.3s
-
-
 // 👉 CAMBIA AQUÍ SU NOMBRE
 const nombre = "Emily";
 
 const saludo = document.getElementById("saludo");
+const music = document.getElementById("musica");
+const btn = document.getElementById("musicBtn");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // Saludo según la hora
 const hora = new Date().getHours();
@@ -24,99 +17,62 @@ else mensajeHora = "Buenas noches";
 saludo.textContent = `${mensajeHora} ${nombre} ❤️`;
 
 // Música
-const music = document.getElementById("musica");
-const btn = document.getElementById("musicBtn");
-
 let reproduciendo = false;
 
-btn.addEventListener("click", () => {
+btn.addEventListener("click", async () => {
   if (!reproduciendo) {
-    music.volume = 0.5;
-    music.play();
-    btn.textContent = "⏸ Pausar";
-  } else {
-    music.pause();
-    btn.textContent = "▶ Música";
+    try {
+      music.volume = 0.5;
+      await music.play();
+      btn.textContent = "⏸ Pausar";
+      reproduciendo = true;
+    } catch {
+      btn.textContent = "No se pudo reproducir. Intenta de nuevo";
+    }
+    return;
   }
-  reproduciendo = !reproduciendo;
+
+  music.pause();
+  btn.textContent = "▶ Música";
+  reproduciendo = false;
 });
 
+function createFloatingElements(count, className, createStyle) {
+  if (prefersReducedMotion) return;
 
+  const fragment = document.createDocumentFragment();
 
-for(let i=0;i<30;i++){
-  const h = document.createElement('div');
-  h.classList.add('heartBg');
-  h.innerHTML = '❤';
-  h.style.left = Math.random()*window.innerWidth + 'px';
-  h.style.top = Math.random()*window.innerHeight + 'px';
-  h.style.fontSize = (5 + Math.random()*20) + 'px';
-  h.style.animationDuration = (2 + Math.random()*4) + 's';
-  document.body.appendChild(h);
+  for (let i = 0; i < count; i++) {
+    const element = document.createElement("div");
+    element.classList.add(className);
+    createStyle(element);
+    fragment.appendChild(element);
+  }
+
+  document.body.appendChild(fragment);
 }
 
-for (let i = 0; i < 40; i++) {
-  const h = document.createElement('div');
-  h.classList.add('heartBg');
-  h.innerHTML = '❤';
+createFloatingElements(40, "heartBg", (h) => {
+  h.textContent = "❤";
+  h.style.left = `${Math.random() * window.innerWidth}px`;
+  h.style.top = `${Math.random() * document.body.scrollHeight}px`;
+  h.style.fontSize = `${6 + Math.random() * 14}px`;
+  h.style.animationDuration = `${2 + Math.random() * 4}s`;
+});
 
-  h.style.left = Math.random() * window.innerWidth + 'px';
-  h.style.top = Math.random() * document.body.scrollHeight + 'px';
-  h.style.fontSize = (6 + Math.random() * 14) + 'px';
-  h.style.animationDuration = (2 + Math.random() * 4) + 's';
-
-  document.body.appendChild(h);
-}
-
-for(let i=0;i<50;i++){
-  const p = document.createElement('div');
-  p.classList.add('particle');
-  p.style.left = Math.random() * window.innerWidth + 'px';
-  p.style.top = Math.random() * window.innerHeight + 'px';
-  p.style.width = p.style.height = (1 + Math.random()*3) + 'px';
-  p.style.animationDuration = (5 + Math.random()*10) + 's';
-  document.body.appendChild(p);
-}
-
-
-
-for (let i = 0; i < 60; i++) {
-  const p = document.createElement('div');
-  p.classList.add('particle');
-
-  p.style.left = Math.random() * window.innerWidth + 'px';
-  p.style.top = Math.random() * document.body.scrollHeight + 'px';
-
+createFloatingElements(60, "particle", (p) => {
+  p.style.left = `${Math.random() * window.innerWidth}px`;
+  p.style.top = `${Math.random() * document.body.scrollHeight}px`;
   const size = 1 + Math.random() * 3;
-  p.style.width = p.style.height = size + 'px';
+  p.style.width = `${size}px`;
+  p.style.height = `${size}px`;
+  p.style.animationDuration = `${5 + Math.random() * 10}s`;
+});
 
-  p.style.animationDuration = (5 + Math.random() * 10) + 's';
-
-  document.body.appendChild(p);
-}
-
-for(let i=0;i<30;i++){
-  const h = document.createElement('div');
-  h.classList.add('love');
-  h.innerHTML = '❤';
-  h.style.left = Math.random()*window.innerWidth + 'px';
-  h.style.top = Math.random()*window.innerHeight + 'px';
-  h.style.fontSize = (5 + Math.random()*20) + 'px';
-  h.style.animationDuration = (2 + Math.random()*4) + 's';
-  document.body.appendChild(h);
-}
-
-for (let i = 0; i < 40; i++) {
-  const h = document.createElement('div');
-  h.classList.add('love');
-  h.innerHTML = '❤';
-
-  h.style.left = Math.random() * window.innerWidth + 'px';
-  h.style.top = Math.random() * document.body.scrollHeight + 'px';
-  h.style.fontSize = (6 + Math.random() * 14) + 'px';
-  h.style.animationDuration = (2 + Math.random() * 4) + 's';
-
-  document.body.appendChild(h);
-}
-
-
-
+createFloatingElements(40, "love", (h) => {
+  h.textContent = "❤";
+  h.style.left = `${Math.random() * window.innerWidth}px`;
+  h.style.top = `${Math.random() * document.body.scrollHeight}px`;
+  h.style.fontSize = `${6 + Math.random() * 14}px`;
+  h.style.animationDuration = `${2 + Math.random() * 4}s`;
+});
